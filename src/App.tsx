@@ -1,7 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Button } from '@chakra-ui/button';
+import CButton from './components/atoms/Button';
+import CTextField from './components/atoms/TextField';
+import logo from './logo.svg';
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         >
           Learn React
         </a>
-
-        <Button variant="solid">Hello</Button>
+        <CTextField mb="1rem" />
+        <CButton variant="solid">Hello</CButton>
       </header>
     </div>
   );
