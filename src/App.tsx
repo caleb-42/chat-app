@@ -18,7 +18,7 @@ function App() {
         store.setUser(null);
       }
     );
-  }, [])
+  }, [store])
 
   return (
     <div className="App">

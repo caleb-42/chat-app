@@ -10,7 +10,7 @@ export default function PublicRoute(props: any) {
   React.useEffect(() => {
     AuthRoute.win = window;
     if (store.user) Router.replace('/');
-  }, [store.user]);
+  }, [store.user, Router]);
 
   return <Route {...props} />;
 }

@@ -11,7 +11,7 @@ export default function PrivateRoute(props: any) {
   React.useEffect(() => {
     AuthRoute.win = window;
     if (!store.user) Router.replace('/auth');
-  }, [store.user]);
+  }, [store.user, Router]);
 
   return <Route {...props} />;
 }
