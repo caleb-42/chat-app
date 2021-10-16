@@ -5,6 +5,7 @@ export default interface IHeading {
   variant?: string;
   color?: string;
   fontWeight?: string;
+  children?: React.ReactNode;
   isTruncated?: boolean;
   size?: string;
   align?: 'center' | 'left' | 'right';

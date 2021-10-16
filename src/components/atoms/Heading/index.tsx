@@ -8,6 +8,7 @@ export default function CHeading({
   value = 'Text',
   props,
   color = '#757575',
+  children,
   ...params
 }: IHeading) {
 
@@ -23,7 +24,7 @@ export default function CHeading({
       //sx={styles}
       {...props}
     >
-      {value}
+      {children ?? value}
     </Heading>
   );
 }

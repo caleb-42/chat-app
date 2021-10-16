@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/layout";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import Helper from "../../../utils";
+import Assets from "../../../utils/assets";
 import { SignInForm, SignInSide } from "./SignInSlide";
 import { SignUpForm, SignUpSide } from "./SignUpSlide";
 
@@ -155,6 +156,7 @@ main{
 
     .overlay-panel {
       position: absolute;
+      background-image: url(${Assets.WATERMARK_LIGHT});
       display: flex;
       align-items: center;
       justify-content: center;
