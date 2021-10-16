@@ -1,6 +1,5 @@
 // 1. Import the extendTheme function
 import { extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 import colors from './foundations/colors';
 import Button from './components/button';
 import Input from './components/input';
