@@ -8,7 +8,6 @@ export default function CButton({
   colorScheme = 'secondary',
   gradientDir = 'to-tr',
   variant = 'solid',
-  borderRadius = '31px',
   fontSize = '16px',
   props,
   ...params
@@ -33,7 +32,6 @@ export default function CButton({
       isLoading={params.isLoading}
       width={params.width}
       height={params.height}
-      borderRadius={borderRadius}
       loadingText={params.loadingText}
       css={params.css}
       fontSize={fontSize}

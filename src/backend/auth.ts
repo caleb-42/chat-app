@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { User } from '../models/Auth';
 
 export default class AuthRoute {
@@ -9,14 +9,24 @@ export default class AuthRoute {
 		return createUserWithEmailAndPassword(auth, `${username}@gmail.com`, password)
 			.then((userCredential) => {
 				// Signed in 
-				const user = userCredential.user;
+				const user: any = userCredential.user;
 				console.log(user);
+				return {
+					accessToken: user?.accessToken,
+					displayName: user?.displayName,
+					email: user?.email,
+					username: user?.email?.split?.('@')?.[0],
+					emailVerified: user?.emailVerified,
+					isAnonymous: user?.isAnonymous,
+					phoneNumber: user?.phoneNumber,
+					photoURL: user?.photoURL,
+					uid: user?.uid
+				} as User;
 				// ...
 			})
 			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
 				console.log(error);
+				throw new Error(error.message);
 				// ..
 			});
 	}
@@ -26,14 +36,31 @@ export default class AuthRoute {
 		return signInWithEmailAndPassword(auth, `${username}@gmail.com`, password)
 			.then((userCredential) => {
 				// Signed in 
-				const user = userCredential.user;
+				const user: any = userCredential.user;
 				console.log(user);
+				return {
+					accessToken: user?.accessToken,
+					displayName: user?.displayName,
+					email: user?.email,
+					username: user?.email?.split?.('@')?.[0],
+					emailVerified: user?.emailVerified,
+					isAnonymous: user?.isAnonymous,
+					phoneNumber: user?.phoneNumber,
+					photoURL: user?.photoURL,
+					uid: user?.uid
+				} as User;
 				// ...
 			})
 			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.log(error);
+				console.log(error.code, error.message);
+				switch(error.code){
+					case 'auth/wrong-password':
+						throw new Error('Password is incoreect');
+					case 'auth/user-not-found':
+						throw new Error('User not registered');
+					default:
+						throw new Error('Something went wrong');
+				}
 			});
 	}
 
@@ -53,15 +80,26 @@ export default class AuthRoute {
 	removeUserFromLocal() {
 		AuthRoute.win.localStorage.clear();
 	}
-	
+
 
 	static currentUser() {
 		const auth = getAuth();
-		return new Promise((resolve, reject) => {
-			auth.onAuthStateChanged((user) => {
+		return new Promise<User>((resolve, reject) => {
+			auth.onAuthStateChanged((user: any) => {
 				if (user) {
 					console.log(user)
-					resolve(user);
+					const usr = {
+						accessToken: user?.accessToken,
+						displayName: user?.displayName,
+						email: user?.email,
+						username: user?.email?.split?.('@')?.[0],
+						emailVerified: user?.emailVerified,
+						isAnonymous: user?.isAnonymous,
+						phoneNumber: user?.phoneNumber,
+						photoURL: user?.photoURL,
+						uid: user?.uid
+					} as User;
+					resolve(usr);
 				}
 				reject(null);
 			});

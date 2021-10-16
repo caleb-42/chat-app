@@ -1,4 +1,5 @@
 import { Box, Text, useColorMode, useColorModeValue, useStyleConfig } from '@chakra-ui/react';
+import { InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/input';
 import React from 'react';
 import ITextField, { InputStyle } from './TextField';
 
@@ -14,6 +15,8 @@ export default function CTextField({
   isError,
   helperText,
   switchTheme,
+  rightAdornment,
+  leftAdornment,
   ...params
 }: ITextField) {
   const styles = useStyleConfig('Input', {});
@@ -28,6 +31,26 @@ export default function CTextField({
 
   const textColor = colorMode === 'light' ? '#7e7e7e' : '#fff';
 
+  const inputMain = <InputStyle
+    sx={styles}
+    onChange={params.onChange}
+    variant={variant}
+    size={params.size}
+    width={params.width}
+    height={height}
+    name={name}
+    borderRadius={borderRadius}
+    css={params.css}
+    color={textColor}
+    fontSize={fontSize}
+    style={params.style}
+    background={bg}
+    boxShadow={bgShadow}
+    placeholder={params.placeholder}
+    value={params.value}
+    {...props}
+  />;
+
   return (
     <Box
       display="flex"
@@ -38,25 +61,16 @@ export default function CTextField({
       mr={params.mr}
       m={params.margin}
     >
-      <InputStyle
-        sx={styles}
-        onChange={params.onChange}
-        variant={variant}
-        size={params.size}
-        width={params.width}
-        height={height}
-        name={name}
-        borderRadius={borderRadius}
-        css={params.css}
-        color={textColor}
-        fontSize={fontSize}
-        style={params.style}
-        background={bg}
-        boxShadow={bgShadow}
-        placeholder={params.placeholder}
-        value={params.value}
-        {...props}
-      />
+      {(leftAdornment || rightAdornment) ? <InputGroup>
+        {leftAdornment && <InputLeftElement
+          pointerEvents="none"
+          color="gray.300"
+          fontSize="1.2em"
+          children={leftAdornment}
+        />}
+        {inputMain}
+        {rightAdornment && <InputRightElement children={rightAdornment} />}
+      </InputGroup> : inputMain}
       {(helperText || keepHelperTextSpace) && (
         <Box mt=".3rem" height="1rem" pl="1rem">
           <Text color={isError ? color : ''} fontSize=".75rem">

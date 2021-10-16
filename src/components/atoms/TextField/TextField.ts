@@ -1,5 +1,6 @@
 import { Input, InputProps } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import React, { ReactElement } from 'react';
 import { AtomProps } from '../atoms.interface';
 
 export default interface ITextField extends AtomProps {
@@ -8,6 +9,8 @@ export default interface ITextField extends AtomProps {
   borderRadius?: string;
   placeholder?: string;
   value?: string;
+  rightAdornment?: React.ReactNode;
+  leftAdornment?: React.ReactNode;
   fontSize?: string;
   name?: string;
   hasShadow?: boolean;

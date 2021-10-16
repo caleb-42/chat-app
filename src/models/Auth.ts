@@ -2,6 +2,7 @@ export interface User {
 	accessToken: string;
 	displayName: string;
 	email: string;
+	username: string;
 	emailVerified: boolean;
 	isAnonymous: boolean;
 	phoneNumber: string;

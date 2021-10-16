@@ -33,6 +33,7 @@ export default interface IButton {
 export const BtnStyle = styled(Button)`
   & {
     font-size: ${({ fontSize }) => fontSize};
+    border-radius: ${({ borderRadius }) => borderRadius ?? '50px'};
     transition: all 0.5s ease-out;
     ${({ colorScheme, variant, theme }) => {
     let colors = (theme as any).colors;
@@ -54,11 +55,15 @@ export const BtnStyle = styled(Button)`
     }
   }}
     &:hover {
-      color: ${({ colorScheme, theme }) => {
-        let colors = (theme as any).colors;
-        return colorScheme === 'wht' ? colors.primaryColor.main : 'white';
-      }};
-      filter: opacity(.8);
+      ${({ colorScheme, theme }) => {
+    let colors = (theme as any).colors;
+    let color = colorScheme === 'wht' ? colors.primaryColor.main : 'white';
+    return `
+          color: ${color};
+          filter: opacity(${colorScheme === 'wht' ? '1' : '.8'});
+        `;
+  }};
+      
     }
   }
 `;
