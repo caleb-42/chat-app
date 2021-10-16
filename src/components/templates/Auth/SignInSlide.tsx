@@ -20,6 +20,7 @@ export const SignInForm = ({ switchPage }: any) => {
 		password: '',
 	});
 	const [obsure, setObsure] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const toast = useToast();
 
@@ -31,15 +32,17 @@ export const SignInForm = ({ switchPage }: any) => {
 		console.log(error);
 		if (error) return toast(Helper.toastObj(error, 'error'))
 
+		setLoading(true)
 		AuthRoute.signIn(state.username, state.password).then((res) => {
-			if(store.user) return;
+			if (store.user) return;
 			toast(Helper.toastObj('Authentication successful'))
 			store.setUser(res)
 			Router.replace('/');
 		}).catch((err) => {
 			console.log(err.message)
 			toast(Helper.toastObj(err.message, 'error'))
-		});
+		}).finally(() =>
+			setLoading(false));
 	}
 	const handleChange = (e: any) => {
 		setState({ ...state, [e.target.name]: e.target.value })
@@ -54,7 +57,7 @@ export const SignInForm = ({ switchPage }: any) => {
 					<form onSubmit={handleSubmit} className="w-100" action="" autoComplete="off">
 						<CTextField mb="1.5rem" placeholder="username" name="username" onChange={handleChange} />
 						<CTextField mb="4rem" props={{ type: !obsure ? 'password' : 'text', }} rightAdornment={<Box cursor="pointer" onClick={() => setObsure(!obsure)} pt=".5rem">{obsure ? <ViewIcon /> : <ViewOffIcon />}</Box>} placeholder="password" name="password" onChange={handleChange} />
-						<CButton width="150px" props={{ type: 'submit' }}>Login</CButton>
+						<CButton isLoading={loading} width="150px" props={{ type: 'submit' }}>Login</CButton>
 					</form>
 				</Box>
 			</Box>

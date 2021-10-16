@@ -4,7 +4,7 @@ export default class Helper {
 	static toastObj = (description: string, status = 'success') => ({
 		description,
 		status,
-		duration: 7000,
+		duration: 5000,
 		isClosable: true,
 		position: 'top'
 	} as UseToastOptions)

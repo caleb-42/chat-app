@@ -10,6 +10,7 @@ function App() {
   const store = useContext(context);
 
   React.useEffect(() => {
+    if(store.user !== undefined) return;
     AuthRoute.currentUser().then(
       (res) => {
         store.setUser(res);

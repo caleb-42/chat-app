@@ -20,6 +20,8 @@ export const SignUpForm = ({ switchPage }: any) => {
 		cpass: false,
 	});
 
+	const [loading, setLoading] = useState(false);
+
 	const setObsure = (val: any) => setAllObsure({ ...state, ...val })
 
 	const [state, setState] = useState({
@@ -38,6 +40,7 @@ export const SignUpForm = ({ switchPage }: any) => {
 		console.log(error);
 		if (error) return toast(Helper.toastObj(error, 'error'))
 
+		setLoading(true)
 		AuthRoute.signUp(state.username, state.password).then((res) => {
 			if(store.user) return;
 			toast(Helper.toastObj('Authentication successful'))
@@ -46,7 +49,8 @@ export const SignUpForm = ({ switchPage }: any) => {
 		}).catch((err) => {
 			console.log(err)
 			toast(Helper.toastObj('Something when wrong', 'error'))
-		});
+		}).finally(() =>
+		setLoading(false));
 	}
 	const handleChange = (e: any) => {
 		setState({ ...state, [e.target.name]: e.target.value })
@@ -60,9 +64,12 @@ export const SignUpForm = ({ switchPage }: any) => {
 				<Box className="form-con" w="100%">
 					<form onSubmit={handleSubmit} className="w-100" action="" autoComplete="off">
 						<CTextField value={state.username} mb="1.5rem" placeholder="username" name="username" onChange={handleChange} />
+
 						<CTextField value={state.password} mb="1.5rem" props={{ type: !obsure.pass ? 'password' : 'text', }} rightAdornment={<Box cursor="pointer" onClick={() => setObsure({pass: !obsure.pass})} pt=".5rem">{obsure.pass ? <ViewIcon /> : <ViewOffIcon />}</Box>} placeholder="password" name="password" onChange={handleChange} />
+
 						<CTextField mb="4rem" props={{ type: !obsure.cpass ? 'password' : 'text', }} rightAdornment={<Box cursor="pointer" onClick={() => setObsure({cpass: !obsure.cpass})} pt=".5rem">{obsure.cpass ? <ViewIcon /> : <ViewOffIcon />}</Box>} placeholder="confirm password" name="confirmPassword" onChange={handleChange} />
-						<CButton props={{ type: 'submit' }} width="150px" >Sign up</CButton>
+						
+						<CButton isLoading={loading} props={{ type: 'submit' }} width="150px" >Sign up</CButton>
 					</form>
 				</Box>
 			</Box>
