@@ -3,10 +3,17 @@ html * {
 }
 
 body,
-html {
+html,
+#root {
   height: 100%;
   background-color: #f7f8ff;
   overflow-x: hidden;
+}
+
+.flex-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main {

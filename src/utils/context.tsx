@@ -2,20 +2,20 @@ import React, { useState } from "react"
 import { User } from "../models/Auth"
 
 export const context = React.createContext({
-	user: null,
+	user: undefined,
 	setUser: () => { }
 } as InitState)
 
-interface InitState { user: null | User, setUser: (user: User) => void }
+interface InitState { user: undefined | null | User, setUser: (user: User | null) => void }
 
 export const ContextProvider = (props: any) => {
 
-	const setUser = (user: User) => {
+	const setUser = (user: undefined | User | null) => {
 		setState({ ...state, user });
 	}
 
 	const initState: InitState = {
-		user: null,
+		user: undefined,
 		setUser,
 	}
 
