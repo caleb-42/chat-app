@@ -1,31 +1,34 @@
 import { Box } from "@chakra-ui/layout";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { addMsg } from "../../../redux/slices/chat.slice";
 import Assets from "../../../utils/assets";
-import { ACTIONS, context } from "../../../utils/context";
 import { NavBar } from "../../molecules/NavBar";
 import { ChatHistory } from "./Chathistory";
 import { ChatInput } from "./ChatInput";
 
 export const ChatComp = () => {
-	const store = useContext(context);
-	const { dispatch, socket } = store;
+	const { socket } = useAppSelector(({ tool }) => tool)
+	const dispatch = useAppDispatch();
 
-	console.log('gain')
 	useEffect(() => {
-		socket?.on("message", data => {
-			console.log('socket', data)
-			dispatch(ACTIONS.SET_CHAT_HISTORY, data);
-		});
-		socket?.on("command", data => {
-			dispatch(ACTIONS.SET_COMMAND, data);
-		});
+		if (!socket?.hasListeners('message')) {
+			socket?.on("message", data => {
+				dispatch(addMsg(data));
+			});
+		}
+		/* if (!socket?.hasListeners('command')) {
+			socket?.on("command", data => {
+				dispatch(addMsg(data));
+			});
+		} */
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch])
 
-	return <Box w="100%" h="100%" bg="#B7C0CD">
-		<Box display="flex" p="1rem 2rem" mx="auto" bgColor="#f5f5f5" backgroundImage={Assets.WATERMARK_DARK} flexDir="column" h="100%" w="100%" maxW="865px">
+	return <Box w="100%" h="100%" backgroundImage={Assets.WATERMARK_DARK}>
+		<Box display="flex" p="1rem 2rem" mx="auto" flexDir="column" h="100%" w="100%" maxW="865px">
 			<NavBar />
-			<Box display="flex" flexGrow={1}>
+			<Box display="flex" flexDir="column" id="chat-con" overflowY="auto" flexGrow={1}>
 				<ChatHistory />
 			</Box>
 			<ChatInput />

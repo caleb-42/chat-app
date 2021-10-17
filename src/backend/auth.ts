@@ -10,7 +10,6 @@ export default class AuthRoute {
 			.then((userCredential) => {
 				// Signed in 
 				const user: any = userCredential.user;
-				console.log(user);
 				return {
 					accessToken: user?.accessToken,
 					displayName: user?.displayName,
@@ -25,7 +24,6 @@ export default class AuthRoute {
 				// ...
 			})
 			.catch((error) => {
-				console.log(error);
 				throw new Error(error.message);
 				// ..
 			});
@@ -37,7 +35,6 @@ export default class AuthRoute {
 			.then((userCredential) => {
 				// Signed in 
 				const user: any = userCredential.user;
-				console.log(user);
 				return {
 					accessToken: user?.accessToken,
 					displayName: user?.displayName,
@@ -87,7 +84,6 @@ export default class AuthRoute {
 		return new Promise<IUser>((resolve, reject) => {
 			auth.onAuthStateChanged((user: any) => {
 				if (user) {
-					console.log(user)
 					const usr = {
 						accessToken: user?.accessToken,
 						displayName: user?.displayName,
