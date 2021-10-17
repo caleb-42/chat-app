@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { User } from '../models/Auth';
+import { IUser } from '../models/Auth';
 
 export default class AuthRoute {
 	static win: any;
@@ -21,7 +21,7 @@ export default class AuthRoute {
 					phoneNumber: user?.phoneNumber,
 					photoURL: user?.photoURL,
 					uid: user?.uid
-				} as User;
+				} as IUser;
 				// ...
 			})
 			.catch((error) => {
@@ -48,7 +48,7 @@ export default class AuthRoute {
 					phoneNumber: user?.phoneNumber,
 					photoURL: user?.photoURL,
 					uid: user?.uid
-				} as User;
+				} as IUser;
 				// ...
 			})
 			.catch((error) => {
@@ -73,7 +73,7 @@ export default class AuthRoute {
 		});
 	}
 
-	SaveUserToLocal(user: User) {
+	SaveIUserToLocal(user: IUser) {
 		AuthRoute.win.localStorage.user = JSON.stringify(user);
 	}
 
@@ -84,7 +84,7 @@ export default class AuthRoute {
 
 	static currentUser() {
 		const auth = getAuth();
-		return new Promise<User>((resolve, reject) => {
+		return new Promise<IUser>((resolve, reject) => {
 			auth.onAuthStateChanged((user: any) => {
 				if (user) {
 					console.log(user)
@@ -98,7 +98,7 @@ export default class AuthRoute {
 						phoneNumber: user?.phoneNumber,
 						photoURL: user?.photoURL,
 						uid: user?.uid
-					} as User;
+					} as IUser;
 					resolve(usr);
 				}
 				reject(null);
@@ -108,7 +108,7 @@ export default class AuthRoute {
 
 	static getUser() {
 		if (AuthRoute.win.localStorage && AuthRoute.win.localStorage.user) {
-			return JSON.parse(AuthRoute.win.localStorage.user) as User;
+			return JSON.parse(AuthRoute.win.localStorage.user) as IUser;
 		}
 		return null;
 	}

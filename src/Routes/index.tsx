@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PrivateRoute from '../utils/privateRoute';
 import PublicRoute from '../utils/publicRoute';
 import AuthPage from './Auth';
+import ChatPage from './Chat';
 import HomePage from './Home';
 
 export const Routes = () => {
@@ -10,6 +11,7 @@ export const Routes = () => {
 		<Router>
 			<Switch>
 				<PublicRoute exact path="/auth" component={AuthPage} />
+				<PrivateRoute path="/chat" component={ChatPage} />
 				<PrivateRoute path="/" component={HomePage} />
 			</Switch>
 		</Router>

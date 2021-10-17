@@ -1,6 +1,8 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { DefaultEventsMap } from "@socket.io/component-emitter";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import socketIOClient, { Socket } from "socket.io-client";
 import App from './App';
 import FirebaseApp from './backend/firebase';
 import './index.css';
@@ -9,10 +11,12 @@ import theme from './theme';
 import { ContextProvider } from "./utils/context";
 
 FirebaseApp();
+const endpoint: string = process.env.REACT_APP_SOCKET_ENDPOINT ?? '';
+const socket: Socket<DefaultEventsMap, DefaultEventsMap> = socketIOClient(endpoint);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ContextProvider>
+    <ContextProvider socket={socket}>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>

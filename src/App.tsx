@@ -4,26 +4,32 @@ import AuthRoute from './backend/auth';
 import { Routes } from './Routes';
 import LoadPage from './Routes/LoadPage';
 import './utils/app.css';
-import { context } from './utils/context';
+import { ACTIONS, context } from './utils/context';
 
 function App() {
   const store = useContext(context);
 
+  const { user, dispatch, socket } = store;
+
   React.useEffect(() => {
-    if(store.user !== undefined) return;
+    if (user) return;
     AuthRoute.currentUser().then(
       (res) => {
-        store.setUser(res);
+        dispatch(ACTIONS.SET_USER, res);
       },
       (err) => {
-        store.setUser(null);
+        dispatch(ACTIONS.SET_USER, null);
       }
-    );
-  }, [store])
+    )
+    /* return () => {
+      socket?.disconnect();
+    } */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch])
 
   return (
     <div className="App">
-      {store.user === undefined ? <LoadPage /> : <Routes />}
+      {user === undefined ? <LoadPage /> : <Routes />}
     </div>
   );
 }
