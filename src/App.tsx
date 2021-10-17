@@ -1,29 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import AuthRoute from './backend/auth';
+import { useAppSelector } from './redux/hooks';
 import { Routes } from './Routes';
-import LoadPage from './Routes/LoadPage';
 import './utils/app.css';
-import { context } from './utils/context';
 
 function App() {
-  const store = useContext(context);
 
-  React.useEffect(() => {
-    if(store.user !== undefined) return;
-    AuthRoute.currentUser().then(
-      (res) => {
-        store.setUser(res);
-      },
-      (err) => {
-        store.setUser(null);
-      }
-    );
-  }, [store])
+  const { socket } = useAppSelector(({ tool }) => tool)
+
+  useEffect(() => {
+    return () => {
+      console.log('ask')
+      socket?.disconnect()
+    }
+  }, [socket])
 
   return (
     <div className="App">
-      {store.user === undefined ? <LoadPage /> : <Routes />}
+      <Routes />
     </div>
   );
 }

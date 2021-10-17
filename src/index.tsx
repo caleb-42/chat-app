@@ -1,22 +1,23 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
 import FirebaseApp from './backend/firebase';
 import './index.css';
+import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import { ContextProvider } from "./utils/context";
 
 FirebaseApp();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ContextProvider>
+    <Provider store={store}>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
-    </ContextProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

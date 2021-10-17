@@ -1,11 +1,12 @@
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Box } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import AuthRoute from "../../../backend/auth";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { setAuth } from "../../../redux/slices/auth.slice";
 import Helper from "../../../utils";
-import { context } from "../../../utils/context";
 import { loginValidation } from "../../../validations/auth";
 import CButton from "../../atoms/Button";
 import CHeading from "../../atoms/Heading";
@@ -14,7 +15,10 @@ import CTextField from "../../atoms/TextField";
 import { SignUpFormStyle } from "./styles";
 
 export const SignInForm = ({ switchPage }: any) => {
-	const store = useContext(context);
+	const dispatch = useAppDispatch();
+
+	const { user } = useAppSelector(({ auth }) => auth)
+
 	const [state, setState] = useState({
 		username: '',
 		password: '',
@@ -29,17 +33,15 @@ export const SignInForm = ({ switchPage }: any) => {
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
 		const error = loginValidation(state.username, state.password);
-		console.log(error);
 		if (error) return toast(Helper.toastObj(error, 'error'))
 
 		setLoading(true)
 		AuthRoute.signIn(state.username, state.password).then((res) => {
-			if (store.user) return;
+			if (user) return;
 			toast(Helper.toastObj('Authentication successful'))
-			store.setUser(res)
+			dispatch(setAuth(res))
 			Router.replace('/');
 		}).catch((err) => {
-			console.log(err.message)
 			toast(Helper.toastObj(err.message, 'error'))
 		}).finally(() =>
 			setLoading(false));

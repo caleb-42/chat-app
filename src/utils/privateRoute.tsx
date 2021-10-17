@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import AuthRoute from '../backend/auth';
-import { context } from './context';
+import { useAppSelector } from '../redux/hooks';
 
 export default function PrivateRoute(props: any) {
-  const store = useContext(context);
+  const { user } = useAppSelector(({ auth }) => auth)
 
   const Router = useHistory();
 
   React.useEffect(() => {
     AuthRoute.win = window;
-    if (!store.user) Router.replace('/auth');
-  }, [store.user, Router]);
+    if (!user) Router.replace('/auth');
+  }, [user, Router]);
 
   return <Route {...props} />;
 }

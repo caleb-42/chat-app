@@ -146,7 +146,6 @@ main{
       width: 200%;
       transform: translateX(0);
       transition: transform 0.6s ease-in-out;
-      /* background-image: url('/images/bg.webp'); */
       background-color: #4965AD;
       background-size: cover;
       color: white;
