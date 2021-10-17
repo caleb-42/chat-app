@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout";
 import { useContext } from "react";
 import AuthRoute from "../../backend/auth";
-import { context } from "../../utils/context";
+import { ACTIONS, context } from "../../utils/context";
 import CButton from "../atoms/Button";
 import Logo from "../atoms/Logo";
 
@@ -12,7 +12,7 @@ export const NavBar = () => {
 		<Logo />
 		<CButton width="150px" variant="outline" colorScheme="primary" onClick={() => {
 			AuthRoute.signOut()
-			store.setUser(null);
+			store.dispatch(ACTIONS.SET_USER, null);
 		}}>Log out</CButton>
 	</Box>
 }

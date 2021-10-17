@@ -25,7 +25,7 @@ export default function CTextField({
   const wht = hasShadow ? '#fdfdfd' : '#fff';
   const bg = colorMode === 'light' ? wht : 'primaryColor.reallyDark';
   const whtShadow = hasShadow
-    ? '3px 3px 4px 2px #f1f1f1 inset, -3px -5px 6px 3px #fff inset'
+    ? '3px 3px 4px 2px #e7e7e7 inset, -3px -5px 6px 3px #fff inset'
     : '0 0 5px 1px #f6f6f6';
   const bgShadow = colorMode === 'light' ? whtShadow : '';
 
@@ -55,6 +55,7 @@ export default function CTextField({
     <Box
       display="flex"
       flexDirection="column"
+      w={params.width}
       mb={params.mb}
       mt={params.mt}
       ml={params.ml}

@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import AuthRoute from "../../../backend/auth";
 import Helper from "../../../utils";
-import { context } from "../../../utils/context";
+import { ACTIONS, context } from "../../../utils/context";
 import { loginValidation } from "../../../validations/auth";
 import CButton from "../../atoms/Button";
 import CHeading from "../../atoms/Heading";
@@ -36,7 +36,7 @@ export const SignInForm = ({ switchPage }: any) => {
 		AuthRoute.signIn(state.username, state.password).then((res) => {
 			if (store.user) return;
 			toast(Helper.toastObj('Authentication successful'))
-			store.setUser(res)
+			store.dispatch(ACTIONS.SET_USER , res)
 			Router.replace('/');
 		}).catch((err) => {
 			console.log(err.message)
