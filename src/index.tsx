@@ -1,26 +1,23 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { DefaultEventsMap } from "@socket.io/component-emitter";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import socketIOClient, { Socket } from "socket.io-client";
+import { Provider } from 'react-redux';
 import App from './App';
 import FirebaseApp from './backend/firebase';
 import './index.css';
+import store from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import { ContextProvider } from "./utils/context";
 
 FirebaseApp();
-const endpoint: string = process.env.REACT_APP_SOCKET_ENDPOINT ?? '';
-const socket: Socket<DefaultEventsMap, DefaultEventsMap> = socketIOClient(endpoint);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ContextProvider socket={socket}>
+    <Provider store={store}>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
-    </ContextProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

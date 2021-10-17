@@ -28,22 +28,37 @@ export const ContextProvider = (props: any) => {
 		socket: null,
 		dispatch: (data) => console.log
 	});
+	/* 
+		useEffect(() => {
+			console.log('sacsc')
+			const savedState = Helper.getLocalStorage({ key: 'state' });
+			setState(savedState);
+		}, []) */
 
-	const dispatch = (action: string, data: any) => {
-		console.log(action, data, state)
+	const dispatch = (action: string, data: any, oldState = state) => {
 		switch (action) {
 			case ACTIONS.SET_CHAT_HISTORY:
-				setState({ ...state, chatHistory: [...state.chatHistory, data] });
+				var array = [...oldState.chatHistory, data]
+				console.log('reducer', action, data, array);
+				setState({
+					chatHistory: array,
+					user: state.user,
+					command: state.command,
+					socket: state.socket,
+					dispatch: state.dispatch,
+				});
 				break;
 			case ACTIONS.SET_COMMAND:
-				setState({ ...state, command: data });
+				setState({ ...oldState, command: data });
 				break;
 			case ACTIONS.SET_USER:
-				setState({ ...state, user: data });
+				setState({ ...oldState, user: data });
 				break;
 			default:
-				setState(state)
+				setState(oldState)
+
 		}
+		//	Helper.saveToLocalStorage({ obj: state, key: 'state' })
 	}
 
 	return (

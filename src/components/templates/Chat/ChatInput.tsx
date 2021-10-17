@@ -1,24 +1,23 @@
 import { IconButton } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Box } from "@chakra-ui/layout";
-import { DefaultEventsMap } from "@socket.io/component-emitter";
-import { useContext, useState } from "react";
-import { Socket } from "socket.io-client";
+import { useState } from "react";
 import { IMessage } from "../../../models/Events";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { addMsg } from "../../../redux/slices/chat.slice";
 import Assets from "../../../utils/assets";
-import { ACTIONS, context } from "../../../utils/context";
 import CTextField from "../../atoms/TextField";
 
 export const ChatInput = () => {
-	const store = useContext(context);
-	const { dispatch, user, socket } = store;
+	const dispatch = useAppDispatch();
+	const { auth: { user }, tool: { socket } } = useAppSelector(state => state)
+
 	const [msg, setMsg] = useState('');
 	const emitMsg = (e: any) => {
 		if (!msg) return;
-		console.log(msg)
 		e.preventDefault();
 		const data = { author: user?.username, message: msg } as IMessage;
-		dispatch(ACTIONS.SET_CHAT_HISTORY, data);
+		dispatch(addMsg(data));
 		socket?.emit('message', data);
 	}
 
