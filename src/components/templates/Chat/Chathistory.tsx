@@ -43,9 +43,9 @@ export const ChatHistory = () => {
 		</CModal>
 		<Box display="flex" flexDir="column" height="100%" w="100%">
 			{chatHistory?.map?.((data, ind) => {
-				return <Box alignSelf={data.author === 'ottonova bot' ? "flex-end" : "flex-start"} shadow="md" textAlign="left" bg={data.author === 'ottonova bot' ? "#e9f0fd" : "#fff"} p="1rem" borderRadius="5px" mb="1rem" w="100%" maxW="350px" id={`msg${ind}`} key={ind} css={PopAnimStyle(data.author === 'ottonova bot' ? 'right' : 'left')}>
+				return <Box alignSelf={data.author === 'ottonova bot' ? "flex-end" : "flex-start"} shadow="lg" textAlign="left" bg={data.author === 'ottonova bot' ? "#e9f0fd" : "#fff"} p="1rem" borderRadius="5px" mb="1rem" w="100%" maxW="350px" id={`msg${ind}`} key={ind} css={PopAnimStyle(data.author === 'ottonova bot' ? 'right' : 'left')}>
 					<Box w="100%" >
-						<CHeading props={{ mb: ".2rem", fontSize: "13px" }} fontWeight="600" value={data.author} />
+						<CHeading color="#666" props={{ mb: ".2rem", fontSize: "14px" }} fontWeight="700" value={Helper.titleCase(data.author)} />
 						<CText fontSize="16px" fontWeight="400" value={data.message} />
 					</Box>
 				</Box>
