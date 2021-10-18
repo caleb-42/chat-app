@@ -27,6 +27,13 @@ export const chatSlice = createSlice({
         command: action.payload
       })
     },
+    resetChat: (state) => {
+      return ({
+        command: null,
+        touchedCommands: { date: '', rate: '', map: '', complete: '' },
+        chatHistory: []
+      })
+    },
     chooseCommand: (state, action: PayloadAction<{ msg: IMessage, com: ICommandData }>) => ({
       ...state,
       chatHistory: [...state.chatHistory, action.payload.msg],
@@ -34,6 +41,6 @@ export const chatSlice = createSlice({
     }),
   },
 });
-export const { addMsg, setCommand, chooseCommand } = chatSlice.actions;
+export const { addMsg, setCommand, resetChat, chooseCommand } = chatSlice.actions;
 
 export default chatSlice.reducer;

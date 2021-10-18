@@ -8,7 +8,7 @@ export const SimpleMap = ({
   address,
   setAddress,
   center = { lat: 59.95, lng: 30.33 },
-  zoom = 11,
+  zoom = 5,
 }) => {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
   // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
@@ -31,7 +31,7 @@ export const SimpleMap = ({
         setAddress("failed to get Address");
       }
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cnt]);
 
   return (
@@ -40,7 +40,10 @@ export const SimpleMap = ({
       defaultCenter={center}
       defaultZoom={zoom}
       onClick={({ x, y, lat, lng, event }) => {
-        setCnt({ lat, lng });
+        setCnt({
+          lat: Math.round(lat * 100) / 100,
+          lng: Math.round(lng * 100) / 100,
+        });
         console.log(x, y, lat, lng, event);
       }}
     >
