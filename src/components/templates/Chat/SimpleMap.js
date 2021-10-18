@@ -31,7 +31,7 @@ export const SimpleMap = ({
         setAddress("failed to get Address");
       }
     );
-  }, [cnt]);
+  }, [cnt, setAddress]);
 
   return (
     <GoogleMapReact
