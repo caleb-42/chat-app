@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IMessage } from '../../models/Events';
+import { ICommand, IMessage } from '../../models/Events';
 
 interface ChatState {
   chatHistory: Array<IMessage>;
+  command: ICommand | null
 }
 
 const initialState: ChatState = {
   chatHistory: [],
+  command: null
 };
 
 export const chatSlice = createSlice({
@@ -17,8 +19,12 @@ export const chatSlice = createSlice({
       ...state,
       chatHistory: [...state.chatHistory, action.payload],
     }),
+    setCommand: (state, action) => ({
+      ...state,
+      command: action.payload,
+    }),
   },
 });
-export const { addMsg } = chatSlice.actions;
+export const { addMsg, setCommand } = chatSlice.actions;
 
 export default chatSlice.reducer;
