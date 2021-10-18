@@ -12,7 +12,7 @@ const AuthSlide = styled(({ className = '' }) => {
 
   return <Box className={className} height="100%" width="100%" bg="#B7C0CD">
     <main className="flex-con w-100 h-100">
-      <Box w="100%" h="100%" overflow="hidden" minH="600px" maxH="900px" maxW="1300px" bg="#f5f5f5" className={`container ${signIn ? 'right-panel-active' : ''}`} id="container">
+      <Box w="100%" h="100%" overflow="hidden" minH="600px" maxH="700px" maxW="1300px" bg="#f5f5f5" className={`container ${signIn ? 'right-panel-active' : ''}`} id="container">
         <SignInForm switchPage={switchPage} />
         <SignUpForm switchPage={switchPage} />
         <div className="overlay-container">
