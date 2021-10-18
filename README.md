@@ -11,7 +11,7 @@
     <a href="https://github.com/caleb-42/chat-app"><strong>Explore the Repo»</strong></a>
     <br />
     <br />
-    <a href="https://cranky-poitras-85c72f.netlify.app">View App</a>
+    <a target="_blank" href="https://cranky-poitras-85c72f.netlify.app">View App</a>
   </p>
 </p>
 
@@ -80,6 +80,20 @@ git clone https://github.com/caleb-42/chat-app.git
 yarn install
 ```
 
+3. Create your env file named .env at the root of the project
+
+```sh
+REACT_APP_NODE_ENV=development
+PORT=3000
+REACT_APP_API_KEY=<FIREBASE API KEY>
+REACT_APP_AUTH_DOMAIN=<FIREBASE AUTH DOMAIN>
+REACT_APP_PROJECT_ID=<FIREBASE PROJECT ID>
+REACT_APP_STORAGE_BUCKET=<FIREBASE STORAGE BUCKET>
+REACT_APP_MESSAGING_SENDER_ID=<FIREBASE MESSAGING SENDER ID>
+REACT_APP_APP_ID=<FIREBASE APP ID>
+REACT_APP_SOCKET_ENDPOINT=<FIREBASE SOCKET ENDPOINT>
+REACT_APP_GOOGLE_API_KEY=<GOOGLE API KEY> // activate Geocoding API & Maps JavaScript API
+```
 <!-- USAGE EXAMPLES -->
 
 ## Usage
