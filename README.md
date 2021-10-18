@@ -8,10 +8,14 @@
   <p align="center">
     A Chat bot app
     <br />
-    <a href="https://github.com/caleb-42/chat-app"><strong>Explore the Repo»</strong></a>
+    <a target="_blank" href="https://cranky-poitras-85c72f.netlify.app"><strong>View App»</strong></a>
     <br />
     <br />
-    <a target="_blank" href="https://cranky-poitras-85c72f.netlify.app">View App</a>
+    <a target="_blank" href="https://www.pivotaltracker.com/n/projects/2535362">Project Planning board in Pivotal Tracker</a>
+    <br />
+    <a target="_blank" href="https://whimsical.com/chat-app-Ly44A33XdAGVcxqrYDuzio">UX Design on whimsical</a>
+    <br />
+    <a target="_blank" href="https://www.figma.com/file/w57o4JkQgTtvOUPPlfuDtw/Chatly?node-id=0%3A1">UI/UX design on Figma</a>
   </p>
 </p>
 
@@ -30,6 +34,7 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
+
 <img width="600" alt="Screenshot 2019-07-20 at 9 09 09 PM" src="public/landing.png">
 
 A simple chat bot app to demonstrate my understanding of react, socket io, firebase authetication, and Google Map API integrations.
@@ -94,12 +99,12 @@ REACT_APP_APP_ID=<FIREBASE APP ID>
 REACT_APP_SOCKET_ENDPOINT=<FIREBASE SOCKET ENDPOINT>
 REACT_APP_GOOGLE_API_KEY=<GOOGLE API KEY> // activate Geocoding API & Maps JavaScript API
 ```
+
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
 _To get started, please refer to the [Hosted App](https://cranky-poitras-85c72f.netlify.app)_
-
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -108,4 +113,3 @@ _To get started, please refer to the [Hosted App](https://cranky-poitras-85c72f.
 - [Netlify](https://www.netlify.com)
 - [Github](https://github.com)
 - [Pivotal Tracker](pivotaltracker.com)
-
