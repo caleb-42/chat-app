@@ -31,7 +31,8 @@ export const SimpleMap = ({
         setAddress("failed to get Address");
       }
     );
-  }, [cnt, setAddress]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cnt]);
 
   return (
     <GoogleMapReact
