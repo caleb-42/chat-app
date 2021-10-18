@@ -32,7 +32,7 @@ export const Date = ({ command, close }: { command: string, close: () => void })
 	return <>
 		<CHeading props={{ textAlign: 'center', mb: '1.4rem', fontSize: '1.6rem' }} value={touchedCommands.date ? 'Choosen date' : 'Please choose a date'} />
 		<Box>
-			{touchedCommands.date ? <CText value={`You choose ${touchedCommands.date}`} /> : days}
+			{touchedCommands.date ? <CText value={`You chose ${touchedCommands.date}`} /> : days}
 		</Box>
 	</>
 }
@@ -47,7 +47,7 @@ export const Map = ({ command, close }: { command: IMap, close: () => void }) =>
 		<ChatStyle h={touchedCommands.map ? '' : "500px"} w="100%" className='marker' display="flex" justifyContent="center">
 			{touchedCommands.map ? <CText value={`${touchedCommands.map}`} /> : <SimpleMap address={address} setAddress={(payload: { address: string, cnt: IMap }) => {
 				if (address) {
-					const data = { author: user?.username, message: `ADDRESS: ${payload.address},  LAT: ${payload.cnt.lat} LNG: ${payload.cnt.lng}` } as IMessage;
+					const data = { author: user?.username, message: `ADDRESS: ${payload.address}, LAT: ${payload.cnt.lat}, LNG: ${payload.cnt.lng}` } as IMessage;
 					dispatch(chooseCommand({ msg: data, com: { type: 'map', data: command } }));
 					socket?.emit('message', data)
 					close();
