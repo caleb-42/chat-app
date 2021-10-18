@@ -31,6 +31,7 @@ export const SimpleMap = ({
         setAddress("failed to get Address");
       }
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cnt]);
 
   return (
