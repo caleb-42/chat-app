@@ -10,6 +10,21 @@ export default class Helper {
 		});
 	};
 
+
+static titleCase = (str: string = '', lowerCase?: boolean) => {
+  let newStr = str || '';
+  if (lowerCase) {
+    newStr = newStr.toLowerCase();
+  }
+  const splitStr = newStr.split(' ');
+  for (let i = 0; i < splitStr.length; i++) {
+    splitStr[i] =
+      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(' ');
+};
+
+
 	static toastObj = (description: string, status = 'success') => ({
 		description,
 		status,

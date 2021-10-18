@@ -21,6 +21,5 @@ export default {
   defaultProps: {
     size: 'md',
     variant: 'solid',
-    colorScheme: 'secondary',
   },
 };

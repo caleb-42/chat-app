@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { addMsg } from "../../../redux/slices/chat.slice";
+import { addMsg, setCommand } from "../../../redux/slices/chat.slice";
 import Assets from "../../../utils/assets";
 import { NavBar } from "../../molecules/NavBar";
 import { ChatHistory } from "./Chathistory";
@@ -17,11 +17,11 @@ export const ChatComp = () => {
 				dispatch(addMsg(data));
 			});
 		}
-		/* if (!socket?.hasListeners('command')) {
+		if (!socket?.hasListeners('command')) {
 			socket?.on("command", data => {
-				dispatch(addMsg(data));
+				dispatch(setCommand(data));
 			});
-		} */
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch])
 
