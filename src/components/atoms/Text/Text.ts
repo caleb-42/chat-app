@@ -1,6 +1,7 @@
 import { TextProps } from '@chakra-ui/react';
+import { AtomProps } from '../atoms.interface';
 
-export default interface ITypography {
+export default interface ITypography extends AtomProps {
   value?: string;
   variant?: string;
   color?: string;

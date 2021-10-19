@@ -31,6 +31,8 @@ export default function CButton({
       leftIcon={params.leftIcon}
       isLoading={params.isLoading}
       width={params.width}
+      className={params.className}
+      id={params.id}
       height={params.height}
       loadingText={params.loadingText}
       css={params.css}
