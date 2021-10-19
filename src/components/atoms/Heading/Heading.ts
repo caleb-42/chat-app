@@ -1,6 +1,7 @@
 import { HeadingProps } from '@chakra-ui/react';
+import { AtomProps } from '../atoms.interface';
 
-export default interface IHeading {
+export default interface IHeading extends AtomProps {
   value?: string;
   variant?: string;
   color?: string;

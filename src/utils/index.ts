@@ -30,7 +30,8 @@ static titleCase = (str: string = '', lowerCase?: boolean) => {
 		status,
 		duration: 5000,
 		isClosable: true,
-		position: 'top'
+		position: 'top',
+		
 	} as UseToastOptions)
 	static breakpoints = (theme: any, size: string, dir: string) =>
 	({

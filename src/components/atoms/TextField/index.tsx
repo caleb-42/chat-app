@@ -1,5 +1,5 @@
-import { Box, Text, useColorMode, useColorModeValue, useStyleConfig } from '@chakra-ui/react';
 import { InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/input';
+import { Box, Text, useColorMode, useColorModeValue, useStyleConfig } from '@chakra-ui/react';
 import React from 'react';
 import ITextField, { InputStyle } from './TextField';
 
@@ -37,8 +37,10 @@ export default function CTextField({
     variant={variant}
     size={params.size}
     width={params.width}
+    className={params.className}
     height={height}
     name={name}
+    id={params.id}
     borderRadius={borderRadius}
     css={params.css}
     color={textColor}

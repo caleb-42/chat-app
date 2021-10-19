@@ -18,13 +18,13 @@ const Home = () => {
 		<Box display="flex" mx="auto" flexDir="column" h="100%" w="100%" maxW="800px">
 			<NavBar />
 			<Box mb="2rem" flexDir="column" alignItems="center" justifyContent="center" display="flex" flexGrow={1}>
-				<CHeading fontWeight="400">
+				<CHeading className="greeting" fontWeight="400">
 					Hello {user?.username}. I'm <span style={{ fontWeight: 700, color: theme.colors.secondaryColor.main }}>Chatly</span>
 				</CHeading>
 				<Box w="300px" h="350px" pos="relative">
 					<Chatly />
 				</Box>
-				<CButton onClick={() => Router.push('/chat')} height="50px" width="200px">Start Chat</CButton>
+				<CButton className="start-chat" onClick={() => Router.push('/chat')} height="50px" width="200px">Start Chat</CButton>
 			</Box>
 		</Box>
 	</Box>

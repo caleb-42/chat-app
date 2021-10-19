@@ -56,7 +56,7 @@ export const SignInForm = ({ switchPage }: any) => {
 			<Box h="100%" w="100%" display="flex" flexDir="column" alignItems="flex-start">
 				<CHeading props={{ mb: "3.5rem" }} value="Welcome back" />
 				<Box className="form-con" w="100%">
-					<form onSubmit={handleSubmit} className="w-100" action="" autoComplete="off">
+					<form onSubmit={handleSubmit} className="login-form w-100" action="" autoComplete="off">
 						<CTextField mb="1.5rem" placeholder="username" name="username" onChange={handleChange} />
 						<CTextField mb="4rem" props={{ type: !obsure ? 'password' : 'text', }} rightAdornment={<Box cursor="pointer" onClick={() => setObsure(!obsure)} pt=".5rem">{obsure ? <ViewIcon /> : <ViewOffIcon />}</Box>} placeholder="password" name="password" onChange={handleChange} />
 						<CButton isLoading={loading} width="150px" props={{ type: 'submit' }}>Login</CButton>

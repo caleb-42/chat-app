@@ -50,9 +50,9 @@ export default class AuthRoute {
 			})
 			.catch((error) => {
 				console.log(error.code, error.message);
-				switch(error.code){
+				switch (error.code) {
 					case 'auth/wrong-password':
-						throw new Error('Password is incoreect');
+						throw new Error('Password is incorrect');
 					case 'auth/user-not-found':
 						throw new Error('User not registered');
 					default:

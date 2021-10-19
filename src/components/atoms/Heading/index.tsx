@@ -19,6 +19,8 @@ export default function CHeading({
       variant={params.variant}
       textAlign={params.align}
       color={color}
+      id={params.id}
+      className={params.className}
       as={params.type}
       isTruncated={params.isTruncated}
       //sx={styles}
