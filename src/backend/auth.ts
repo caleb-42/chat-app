@@ -24,8 +24,8 @@ export default class AuthRoute {
 				// ...
 			})
 			.catch((error) => {
-				throw new Error(error.message);
-				// ..
+				if (error.code === 'auth/email-already-in-use') throw new Error('Username already in use');
+				throw new Error('Something went wrong');
 			});
 	}
 

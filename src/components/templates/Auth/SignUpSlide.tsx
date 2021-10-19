@@ -49,7 +49,7 @@ export const SignUpForm = ({ switchPage }: any) => {
 			dispatch(setAuth(res))
 			Router.replace('/');
 		}).catch((err) => {
-			toast(Helper.toastObj('Something when wrong', 'error'))
+			toast(Helper.toastObj(err.message, 'error'))
 		}).finally(() =>
 			setLoading(false));
 	}
