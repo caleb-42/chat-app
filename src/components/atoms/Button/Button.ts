@@ -1,7 +1,8 @@
 import { Button, ButtonProps } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { AtomProps } from '../atoms.interface';
 
-export default interface IButton {
+export default interface IButton extends AtomProps {
   variant?: 'solid' | 'ghost' | 'outline' | 'link';
   size?: 'lg' | 'md' | 'sm' | 'xs';
   rightIcon?: React.ReactElement;

@@ -73,19 +73,19 @@ npm install --global yarn
 
 ### Installation
 
-1. Clone the repo
+#### 1. Clone the repo
 
 ```sh
 git clone https://github.com/caleb-42/chat-app.git
 ```
 
-2. Install NPM packages
+#### 2. Install NPM packages
 
 ```sh
 yarn install
 ```
 
-3. Create your env file named .env at the root of the project
+#### 3. Create your env file named .env at the root of the project
 
 ```sh
 REACT_APP_NODE_ENV=development
@@ -100,6 +100,11 @@ REACT_APP_SOCKET_ENDPOINT=<FIREBASE SOCKET ENDPOINT>
 REACT_APP_GOOGLE_API_KEY=<GOOGLE API KEY> // activate Geocoding API & Maps JavaScript API
 ```
 
+
+#### 4. Run Tests (Used Jest and Puppeteer)
+```sh
+yarn test
+```
 <!-- USAGE EXAMPLES -->
 
 ## Usage
@@ -109,7 +114,7 @@ _To get started, please refer to the [Hosted App](https://cranky-poitras-85c72f.
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements
-
+Used the following free services
 - [Netlify](https://www.netlify.com)
 - [Github](https://github.com)
 - [Pivotal Tracker](pivotaltracker.com)

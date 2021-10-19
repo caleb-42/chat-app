@@ -24,8 +24,8 @@ export default class AuthRoute {
 				// ...
 			})
 			.catch((error) => {
-				throw new Error(error.message);
-				// ..
+				if (error.code === 'auth/email-already-in-use') throw new Error('Username already in use');
+				throw new Error('Something went wrong');
 			});
 	}
 
@@ -50,9 +50,9 @@ export default class AuthRoute {
 			})
 			.catch((error) => {
 				console.log(error.code, error.message);
-				switch(error.code){
+				switch (error.code) {
 					case 'auth/wrong-password':
-						throw new Error('Password is incoreect');
+						throw new Error('Password is incorrect');
 					case 'auth/user-not-found':
 						throw new Error('User not registered');
 					default:
