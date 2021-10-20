@@ -44,16 +44,25 @@ export const Map = ({ command, close }: { command: IMap, close: () => void }) =>
 	return <>
 		<CHeading props={{ textAlign: 'center', mb: '1.4rem', fontSize: '1.6rem' }} value={touchedCommands.map ? 'Selected Address' : 'Please select a location on the map'} />
 
-		<ChatStyle h={touchedCommands.map ? '' : "500px"} w="100%" className='marker' display="flex" justifyContent="center">
-			{touchedCommands.map ? <CText value={`${touchedCommands.map}`} /> : <SimpleMap address={address} setAddress={(payload: { address: string, cnt: IMap }) => {
-				if (address) {
-					const data = { author: user?.username, message: `ADDRESS: ${payload.address}, LAT: ${payload.cnt.lat}, LNG: ${payload.cnt.lng}` } as IMessage;
+		<ChatStyle h={touchedCommands.map ? '' : "420px"} w="100%" className='marker' display="flex" flexDir="column" alignItems="center" justifyContent="center">
+			{touchedCommands.map ? <CText value={`${touchedCommands.map}`} /> : < >
+				<SimpleMap address={address} setAddress={(payload: { address: string, cnt: IMap }) => {
+					if (address) {
+						const data = { author: user?.username, message: `ADDRESS: ${payload.address}, LAT: ${payload.cnt.lat}, LNG: ${payload.cnt.lng}` } as IMessage;
+						dispatch(chooseCommand({ msg: data, com: { type: 'map', data: payload.cnt } }));
+						socket?.emit('message', data)
+						close();
+					}
+					setAddress(payload.address)
+				}} center={{ lat: Number(command.lat), lng: Number(command.lng) }} />
+				<CButton width="7rem" props={{ mt: '1rem' }} onClick={() => {
+					const data = { author: user?.username, message: `ADDRESS: ${address}, LAT: ${command.lat}, LNG: ${command.lng}` } as IMessage;
 					dispatch(chooseCommand({ msg: data, com: { type: 'map', data: command } }));
 					socket?.emit('message', data)
 					close();
-				}
-				setAddress(payload.address)
-			}} center={{ lat: Number(command.lat), lng: Number(command.lng) }} />}
+				}} >Save</CButton>
+			</>
+			}
 		</ChatStyle>
 	</>
 }
