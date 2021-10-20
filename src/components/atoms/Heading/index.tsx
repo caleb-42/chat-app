@@ -7,7 +7,6 @@ import IHeading from './Heading';
 export default function CHeading({
   value = 'Text',
   props,
-  color = '#757575',
   children,
   ...params
 }: IHeading) {
@@ -18,7 +17,7 @@ export default function CHeading({
       fontWeight={params.fontWeight}
       variant={params.variant}
       textAlign={params.align}
-      color={color}
+      color={params.color}
       id={params.id}
       className={params.className}
       as={params.type}

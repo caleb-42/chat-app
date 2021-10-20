@@ -4,7 +4,7 @@ export const global = (props: any) => ({
   'html, body': {
     fontFamily: 'body',
     height: '100%',
-    color: mode('#757575', 'whiteAlpha.900')(props),
+    color: mode('#525252', 'whiteAlpha.900')(props),
     bg: mode('#f6f6f6', '#001b1c')(props),
     lineHeight: 'base',
   },

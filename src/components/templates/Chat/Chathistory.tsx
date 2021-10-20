@@ -45,7 +45,7 @@ export const ChatHistory = () => {
 			{chatHistory?.map?.((data, ind) => {
 				return <Box alignSelf={data.author === 'ottonova bot' ? "flex-end" : "flex-start"} shadow="lg" textAlign="left" bg={data.author === 'ottonova bot' ? "#e9f0fd" : "#fff"} p="1rem" borderRadius="5px" mb="1rem" w="100%" maxW="350px" id={`msg${ind}`} key={ind} css={PopAnimStyle(data.author === 'ottonova bot' ? 'right' : 'left')}>
 					<Box w="100%" >
-						<CHeading color="#666" props={{ mb: ".2rem", fontSize: "14px" }} fontWeight="700" value={Helper.titleCase(data.author)} />
+						<CHeading color="primaryColor.main" props={{ mb: ".2rem", fontSize: "14px" }} fontWeight="700" value={Helper.titleCase(data.author)} />
 						<CText fontSize="16px" fontWeight="400" value={data.message} />
 					</Box>
 				</Box>
